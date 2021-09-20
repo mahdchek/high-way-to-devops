@@ -14,6 +14,6 @@ node('aws') {
     }
 
     stage ("deploy"){
-        sh "docker-compose up --build -d"
+        sh "sudo docker-compose up --build -d"
     }
 }
