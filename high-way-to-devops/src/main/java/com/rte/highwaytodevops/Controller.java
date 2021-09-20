@@ -11,6 +11,6 @@ public class Controller {
     public AppDetails getAppDetails() {
         return AppDetails.builder()
                 .appName("High-way-to-Devops")
-                .version("V.1.0.0").build();
+                .version("V.1.0.1").build();
     }
 }
