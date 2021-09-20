@@ -10,7 +10,7 @@ node('aws') {
     }
 
     stage ("build front end"){
-        sh "cd high-way-to-devops-front && ng build --prod"
+        sh "cd high-way-to-devops-front && npm install && ng build --prod"
     }
 
     stage ("deploy"){
