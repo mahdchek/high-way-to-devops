@@ -30,7 +30,7 @@ node('aws') {
         stash includes: 'kubernetes/**/*', name: 'kubernetes-resources'
         node ("kube-cluster"){
         unstash 'kubernetes-resources'
-        sh "bash start-kubernetes.sh"
+        sh "cd kubernetes && chmod 777 start-kubernetes.sh && ./start-kubernetes.sh"
         }
     }
 }

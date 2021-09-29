@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: front
-          image: front
+          image: mchekini/front:2.0
           imagePullPolicy: IfNotPresent
           volumeMounts:
             - mountPath: /etc/nginx/conf.d/
