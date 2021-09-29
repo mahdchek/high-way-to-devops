@@ -1,8 +1,8 @@
 # delete all pods
-kubectl delete -f ./deployments/
+sudo kubectl delete -f ./deployments/
 
 # delete all services
-kubectl delete -f ./services/
+sudo kubectl delete -f ./services/
 
 sleep 5
 
@@ -10,13 +10,13 @@ sleep 5
 #kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/master/aio/deploy/recommended.yaml
 
 # create config maps
-kubectl apply -f ./config-map/
+sudo kubectl apply -f ./config-map/
 
 # create secrets
-#kubectl apply -f ./secrets/
+sudo kubectl apply -f ./secrets/
 
 # create all pods
-kubectl apply -f ./deployments/
+sudo kubectl apply -f ./deployments/
 
 # create all services
-kubectl apply -f ./services/
+sudo kubectl apply -f ./services/
