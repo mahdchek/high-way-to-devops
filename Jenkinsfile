@@ -27,10 +27,10 @@ node('aws') {
     }
 
     stage("remove images from CI VM"){
-        sh "docker rmi front"
-        sh "docker rmi back"
-        sh "docker rmi mchekini/front:$version"
-        sh "docker rmi mchekini/back:$version"
+        sh "sudo docker rmi mchekini/back:$version"
+        sh "sudo docker rmi mchekini/front:$version"
+        sh "sudo docker rmi front"
+        sh "sudo docker rmi back"
     }
 
     stage ("deploy"){
