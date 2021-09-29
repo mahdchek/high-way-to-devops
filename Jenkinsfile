@@ -14,16 +14,16 @@ node('aws') {
     }
 
     stage ("build docker images"){
-        sh "cd high-way-to-devops && docker build -t back ."
-        sh "cd high-way-to-devops-front && docker build -t front ."
+        sh "cd high-way-to-devops && sudo docker build -t back ."
+        sh "cd high-way-to-devops-front && sudo docker build -t front ."
     }
 
     stage("push images"){
-        sh "docker login --username $username --password $password"
-        sh "docker tag front mchekini/front:$version"
-        sh "docker tag back mchekini/back:$version"
-        sh "docker push mchekini/front:$version"
-        sh "docker push mchekini/back:$version"
+        sh "sudo docker login --username $username --password $password"
+        sh "sudo docker tag front mchekini/front:$version"
+        sh "sudo docker tag back mchekini/back:$version"
+        sh "sudo docker push mchekini/front:$version"
+        sh "sudo docker push mchekini/back:$version"
     }
 
     stage ("deploy"){
