@@ -1,0 +1,16 @@
+étapes à mettre en place pour initialiser un cluster kuberenetes :
+
+
+1 - installer docker sur toutes les VMs ( noeuds )
+2 - installer kubeadm et kubectl (apt-get install ...)
+3 - choisir un master
+4 - sur le master choisi, lancer la commande kubeadm init
+  - à la fin du lancement de cette commande, on a en sortie une commande qui ressemble à la commande ci-dessous :
+  kubeadm join 172.31.26.228:6443 --token 8pqdh4.wy08436yefzisc07 \
+          --discovery-token-ca-cert-hash sha256:e754b4356d0a8f26bc2e6446fd7bea300bd646afe0c8ccee46954d5c4971d33f
+
+
+5 - sur tous les noeuds qui veulent rejoindre le cluster, lancer la commande kubeadm join.
+
+6 - mettre en place un réseau pour la communication des noeuds ( weave )
+kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"

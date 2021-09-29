@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: front-deploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      application: front
+  template:
+    metadata:
+      name: front
+      labels:
+        application: front
+        type: front-end
+    spec:
+      containers:
+        - name: front
+          image: front
+          imagePullPolicy: IfNotPresent
+          volumeMounts:
+            - mountPath: /etc/nginx/conf.d/
+              name: nginx-configuration
+      volumes:
+        - name: nginx-configuration
+          configMap:
+            name: nginx-config-map

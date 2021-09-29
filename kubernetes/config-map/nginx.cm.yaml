@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nginx-config-map
+data:
+  main.conf: |
+    upstream hisghwaytodevopsLoadbalancer {
+      server back-svc:80;
+    }
+
+    server {
+      listen 80;
+
+      location /api {
+        proxy_pass http://hisghwaytodevopsLoadbalancer;
+      }
+
+
+      location / {
+        root /usr/share/nginx/html;
+        index index.html;
+      }
+    }
+
+
+

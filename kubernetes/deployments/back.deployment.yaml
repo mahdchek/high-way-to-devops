@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: back-deploy
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      application: back
+  template:
+    metadata:
+      name: back
+      labels:
+        application: back
+        type: back-end
+    spec:
+      containers:
+        - name: back
+          ports:
+            - containerPort: 8080
+              name: default-port
+          image: back
+          imagePullPolicy: IfNotPresent
+          command:
+            - java
+            - -jar
+            - /opt/high-way-to-devops.jar
+            - --spring.config.location=file:///configuration/application.properties
+          volumeMounts:
+            - mountPath: /configuration
+              name: back-config
+      volumes:
+        - name: back-config
+          configMap:
+            name: back-config-map

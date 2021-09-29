@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bdd-deploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      application: bdd
+  template:
+    metadata:
+      name: bdd
+      labels:
+        application: bdd
+        type: database
+    spec:
+      containers:
+        - name: postgres
+          image: postgres
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: POSTGRES_PASSWORD
+              value: admin
+          ports:
+            - containerPort: 5432
