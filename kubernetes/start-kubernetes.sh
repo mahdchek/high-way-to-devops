@@ -7,7 +7,7 @@ sudo kubectl delete -f ./services/
 sleep 5
 
 # create kubernetes dashboard
-#kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/master/aio/deploy/recommended.yaml
+sudo kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/master/aio/deploy/recommended.yaml
 
 # create config maps
 sudo kubectl apply -f ./config-map/

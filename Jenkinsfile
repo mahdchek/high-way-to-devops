@@ -26,6 +26,13 @@ node('aws') {
         sh "sudo docker push mchekini/back:$version"
     }
 
+    stage("remove images from CI VM"){
+        sh "docker rmi front"
+        sh "docker rmi back"
+        sh "docker rmi mchekini/front:$version"
+        sh "docker rmi mchekini/back:$version"
+    }
+
     stage ("deploy"){
         stash includes: 'kubernetes/**/*', name: 'kubernetes-resources'
         node ("kube-cluster"){
