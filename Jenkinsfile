@@ -13,20 +13,24 @@ node('aws') {
         sh "cd high-way-to-devops-front && npm install && ng build --prod"
     }
 
-//    stage ("sonarqube"){
-//        sh "cd high-way-to-devops && ./mvnw sonar:sonar \\\n" +
-//                "  -Dsonar.projectKey=devops \\\n" +
-//                "  -Dsonar.host.url=http://3.226.252.73:9011 \\\n" +
-//                "  -Dsonar.login=042c188795d9431ad438663e464799a16b526ffb"
-//    }
+    stage ("build docker images"){
+        sh "cd high-way-to-devops && docker build -t back ."
+        sh "cd high-way-to-devops-front && docker build -t front ."
+    }
+
+    stage("push images"){
+        sh "docker login --username $username --password $password"
+        sh "docker tag front mchekini/front:$version"
+        sh "docker tag back mchekini/back:$version"
+        sh "docker push mchekini/front:$version"
+        sh "docker push mchekini/back:$version"
+    }
 
     stage ("deploy"){
-
-        try{
-            sh "sudo docker-compose down"
-        }catch(Exception e){
-            println "aucun contenur n'est lancé"
+        stash includes: 'kubernetes/**/*', name: 'kubernetes-resources'
+        node ("kube-cluster"){
+        unstash 'kubernetes-resources'
+        sh "bash start-kubernetes.sh"
         }
-        sh "sudo docker-compose up --build -d"
     }
 }

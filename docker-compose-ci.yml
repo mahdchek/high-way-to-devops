@@ -13,6 +13,11 @@ services:
     image: sonarqube:7.8-community
     ports:
       - "9011:9000"
+  artifactory:
+    container_name: artifactory
+    image: mattgruter/artifactory
+    ports:
+      - "8080:8080"
 
 volumes:
   jenkins_data:
