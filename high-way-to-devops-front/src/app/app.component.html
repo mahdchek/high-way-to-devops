@@ -4,3 +4,19 @@
 
 <h1 style="text-align: center;"> App Name : {{appName}}</h1>
 <h1 style="text-align: center"> Version : {{version}}</h1>
+
+
+
+
+<hr>
+
+
+
+<ul>
+  <li *ngFor = "let personne of personnes">
+    <p> login : {{personne.login}}</p>
+    <p> Prénom : {{personne.firstName}}</p>
+    <p> Nom : {{personne.lastName}}</p>
+    <p> Taux journalier Moyen : {{personne.tjm}}</p>
+  </li>
+</ul>
