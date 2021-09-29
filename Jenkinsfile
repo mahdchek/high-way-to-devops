@@ -6,7 +6,7 @@ node('aws') {
 
     stage ("build back end "){
         sh "chmod -R 777 high-way-to-devops/mvnw"
-        sh "cd high-way-to-devops && ./mvnw clean package -DskipTest"
+        sh "cd high-way-to-devops && ./mvnw clean package -DskipTests"
     }
 
     stage ("build front end"){
