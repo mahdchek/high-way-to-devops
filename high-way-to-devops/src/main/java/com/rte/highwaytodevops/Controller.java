@@ -38,7 +38,7 @@ public class Controller {
     @GetMapping("api")
     public AppDetails getAppDetails() {
         return AppDetails.builder()
-                .appName("High-way-to-Devops")
+                .appName("High-way-to-Devops with helm")
                 .version("V.1.0.2").build();
     }
 
