@@ -35,9 +35,12 @@ node('aws') {
 
     stage ("deploy"){
         stash includes: 'kubernetes/**/*', name: 'kubernetes-resources'
+        stash includes: 'helm/**/*', name: 'helm-chart'
         node ("kube-cluster"){
         unstash 'kubernetes-resources'
+        unstash 'helm-chart'
         sh "cd kubernetes && chmod 777 kubernetes.sh && ./kubernetes.sh"
+            sh "cd helm && helm install --name high-way ./"
         }
     }
 }

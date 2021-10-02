@@ -16,7 +16,7 @@ sudo kubectl apply -f ./config-map/
 sudo kubectl apply -f ./secrets/
 
 # create all pods
-sudo kubectl apply -f ./deployments/
+#sudo kubectl apply -f ./deployments/
 
 # create all services
-sudo kubectl apply -f ./services/
+#sudo kubectl apply -f ./services/
