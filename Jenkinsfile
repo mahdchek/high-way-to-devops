@@ -40,7 +40,7 @@ node('aws') {
         unstash 'kubernetes-resources'
         unstash 'helm-chart'
         sh "cd kubernetes && chmod 777 kubernetes.sh && ./kubernetes.sh"
-            sh "cd helm && helm install --name high-way ./"
+            sh "cd helm && helm install high-way ./"
         }
     }
 }
