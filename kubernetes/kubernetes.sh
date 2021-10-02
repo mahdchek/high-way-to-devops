@@ -13,7 +13,7 @@ sudo kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/mas
 sudo kubectl apply -f ./config-map/
 
 # create secrets
-sudo kubectl apply -f ./secrets/
+#sudo kubectl apply -f ./secrets/
 
 # create all pods
 #sudo kubectl apply -f ./deployments/
