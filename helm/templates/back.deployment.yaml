@@ -19,8 +19,8 @@ spec:
           ports:
             - containerPort: 8080
               name: default-port
-          image: mchekini/back{{ .Values.imageVersion }}
-          imagePullPolicy: Always
+          image: mchekini/back:{{ .Values.imageVersion }}
+          imagePullPolicy: IfNotPresent
           command:
             - java
             - -jar
