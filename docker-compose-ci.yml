@@ -13,12 +13,60 @@ services:
     image: sonarqube:7.8-community
     ports:
       - "9011:9000"
-  artifactory:
-    container_name: artifactory
-    image: mattgruter/artifactory
+#  artifactory:
+#    container_name: artifactory
+#    image: mattgruter/artifactory
+#    ports:
+#      - "8080:8080"
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.10.1
+    container_name: elastic
+    environment:
+      - node.name=es01
+      - cluster.name=es-cluster
+      - discovery.seed_hosts=elasticsearch
+      - cluster.initial_master_nodes=es01
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      nproc: 65535
+      memlock:
+        soft: -1
+        hard: -1
+    cap_add:
+      - ALL
+    privileged: true
+    volumes:
+      - esdata1:/usr/share/elasticsearch/data
     ports:
-      - "8080:8080"
+      - 9200:9200
+      - 9300:9300
+  kibana:
+    image: docker.elastic.co/kibana/kibana-oss:7.10.1
+    container_name: kibana
+    links:
+      - elasticsearch:elasticsearch
+    environment:
+      SERVER_NAME: localhost
+      ELASTICSEARCH_URL: http://elasticsearch:9200/
+    ports:
+      - 5601:5601
+    ulimits:
+      nproc: 65535
+      memlock:
+        soft: -1
+        hard: -1
+    cap_add:
+      - ALL
+  postgres:
+    image: postgres
+    container_name: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=admin
 
 volumes:
   jenkins_data:
   sonar_data:
+  esdata1:
