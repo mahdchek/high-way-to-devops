@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 
 replicaCount: 1
-imageVersion: "4.0"
+imageVersion: "5.0"
 
 image:
   repository: nginx
