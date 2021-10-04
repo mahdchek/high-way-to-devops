@@ -39,7 +39,7 @@ public class Controller {
     public AppDetails getAppDetails() {
         return AppDetails.builder()
                 .appName("High-way-to-Devops with helm")
-                .version("V.1.0.2").build();
+                .version("V.1.0.3").build();
     }
 
 
