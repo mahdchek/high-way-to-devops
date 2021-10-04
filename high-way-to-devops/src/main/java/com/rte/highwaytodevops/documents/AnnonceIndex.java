@@ -11,10 +11,10 @@ import java.util.List;
 
 import static org.springframework.data.elasticsearch.annotations.FieldType.Text;
 
-@Data
-@Builder
-@Document(indexName = "annonce-document")
-@Setting(settingPath = "doc-settings/annonce-settings.json")
+//@Data
+//@Builder
+//@Document(indexName = "annonce-document")
+//@Setting(settingPath = "doc-settings/annonce-settings.json")
 public class AnnonceIndex {
 
     @Id

@@ -56,21 +56,21 @@ public class Controller {
 
         personneRepository.save(p1);
 
-        annonceRepository.deleteAll();
+//        annonceRepository.deleteAll();
 
-        AnnonceIndex annonce1 = AnnonceIndex.builder()
-                .id(1L)
-                .title("appartement T2")
-                .description("joli appartement T2 situé à paris")
-                .build();
+//        AnnonceIndex annonce1 = AnnonceIndex.builder()
+//                .id(1L)
+//                .title("appartement T2")
+//                .description("joli appartement T2 situé à paris")
+//                .build();
+//
+//        AnnonceIndex annonce2 = AnnonceIndex.builder()
+//                .id(2L)
+//                .title("appartement T3 à paris")
+//                .description("joli appartement T3 situé à paris")
+//                .build();
 
-        AnnonceIndex annonce2 = AnnonceIndex.builder()
-                .id(2L)
-                .title("appartement T3 à paris")
-                .description("joli appartement T3 situé à paris")
-                .build();
-
-        annonceRepository.saveAll(Lists.newArrayList(annonce1, annonce2));
+//        annonceRepository.saveAll(Lists.newArrayList(annonce1, annonce2));
     }
 
 
