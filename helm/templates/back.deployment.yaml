@@ -13,7 +13,12 @@ spec:
       labels:
         application: back
         type: back-end
+      annotations:
+        vault.hashicorp.com/agent-inject: 'true'
+        vault.hashicorp.com/role: 'devweb-app'
+        vault.hashicorp.com/agent-inject-secret-credentials.txt: 'secret/devops'
     spec:
+      serviceAccountName: internal-app
       containers:
         - name: back
           ports:
