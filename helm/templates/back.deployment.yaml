@@ -26,6 +26,11 @@ spec:
               name: default-port
           image: mchekini/back:{{ .Values.imageVersion }}
           imagePullPolicy: IfNotPresent
+          env:
+             - name: VAULT_ADDR
+               value: 'http://52.73.153.8:8200'
+             - name: VAULT_TOKEN
+               value: 's.cNfUJIvWj4Ke4Q3pNs8sjfxf'
           command:
             - java
             - -jar
