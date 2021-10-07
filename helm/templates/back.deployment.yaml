@@ -15,7 +15,7 @@ spec:
         type: back-end
       annotations:
         vault.hashicorp.com/agent-inject: 'true'
-        vault.hashicorp.com/role: 'devweb-app'
+        vault.hashicorp.com/role: 'example'
         vault.hashicorp.com/agent-inject-secret-credentials.txt: 'secret/devops'
     spec:
       serviceAccountName: vault-auth
