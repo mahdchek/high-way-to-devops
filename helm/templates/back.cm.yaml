@@ -5,9 +5,23 @@ metadata:
 data:
   application.properties: |
     #DataSource settings
+    auto_auth {
+        method "kubernetes" {
+            mount_path = "auth/kubernetes"
+            config = {
+                role = "example"
+            }
+        }
+
+        sink "file" {
+            config = {
+                path = "/home/vault/.vault-token"
+            }
+        }
+    }
     spring.datasource.url=jdbc:postgresql://bdd-svc:5432/postgres
-    spring.datasource.username=postgres
-    spring.datasource.password=admin
+    spring.datasource.username={{ .Data.data.login }}
+    spring.datasource.password={{ .Data.data.password }}
     spring.datasource.driver-class-name=org.postgresql.Driver
 
 

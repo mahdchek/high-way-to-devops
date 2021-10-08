@@ -16,9 +16,24 @@ spec:
       annotations:
         vault.hashicorp.com/agent-inject: 'true'
         vault.hashicorp.com/role: 'example'
-        vault.hashicorp.com/agent-inject-secret-credentials.txt: 'secret/devops'
+        vault.hashicorp.com/agent-inject-secret-credentials.txt: 'kv/devops'
     spec:
       serviceAccountName: vault-auth
+      initContainers:
+      - args:
+          - agent
+          - -config=/etc/vault/application.properties
+          - -log-level=debug
+        env:
+          - name: VAULT_ADDR
+            value: 'http://52.73.153.8:8200'
+        image: vault
+        name: vault-agent
+        volumeMounts:
+          - mountPath: /etc/vault
+            name: config
+          - mountPath: /etc/secrets
+            name: shared-data
       containers:
         - name: back
           ports:
