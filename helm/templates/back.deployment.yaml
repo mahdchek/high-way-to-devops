@@ -15,10 +15,10 @@ spec:
         type: back-end
       annotations:
         vault.hashicorp.com/agent-inject: 'true'
-        vault.hashicorp.com/role: 'example'
-        vault.hashicorp.com/agent-inject-secret-credentials.txt: 'secret/devops'
+        vault.hashicorp.com/role: 'internal-app'
+        vault.hashicorp.com/agent-inject-secret-database-config.txt: 'internal/data/database/config'
     spec:
-      serviceAccountName: vault-auth
+      serviceAccountName: internal-app
       containers:
         - name: back
           ports:
@@ -26,11 +26,6 @@ spec:
               name: default-port
           image: mchekini/back:{{ .Values.imageVersion }}
           imagePullPolicy: IfNotPresent
-          env:
-             - name: VAULT_ADDR
-               value: 'http://52.73.153.8:8200'
-             - name: VAULT_TOKEN
-               value: root
           command:
             - java
             - -jar
