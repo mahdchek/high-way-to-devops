@@ -16,7 +16,29 @@ spec:
       annotations:
         vault.hashicorp.com/agent-inject: 'true'
         vault.hashicorp.com/role: 'internal-app'
-        vault.hashicorp.com/agent-inject-secret-database-config.txt: 'internal/data/database/config'
+        vault.hashicorp.com/agent-inject-application.properties: '/configuration'
+        vault.hashicorp.com/agent-inject-template-helloworld: |
+          {{- with secret "secret/helloworld" -}}
+          spring.datasource.url=jdbc:postgresql://bdd-svc:5432/postgres
+          spring.datasource.username={{ .Data.data.username }}
+          spring.datasource.password={{ .Data.data.password }}
+          spring.datasource.driver-class-name=org.postgresql.Driver
+
+
+          #jpa settings
+          spring.jpa.database=postgresql
+          spring.jpa.show-sql=false
+          spring.jpa.hibernate.ddl-auto=create
+          spring.jpa.hibernate.naming.strategy=org.hibernate.cfg.ImprovedNamingStrategy
+          spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
+
+          #Flyway
+          spring.flyway.user=postgres
+          spring.flyway.password=admin
+          spring.flyway.schemas=public
+          spring.flyway.url=jdbc:postgresql://bdd-svc:5432/postgres
+          spring.flyway.locations=classpath:db/migration
+          {{- end }}
     spec:
       serviceAccountName: internal-app
       containers:
@@ -31,9 +53,9 @@ spec:
             - -jar
             - /opt/high-way-to-devops.jar
             - --spring.config.location=file:///configuration/application.properties
-          volumeMounts:
-            - mountPath: /configuration
-              name: back-config
+{{/*          volumeMounts:*/}}
+{{/*            - mountPath: /configuration*/}}
+{{/*              name: back-config*/}}
       volumes:
         - name: back-config
           configMap:
