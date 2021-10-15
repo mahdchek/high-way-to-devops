@@ -26,10 +26,7 @@ spec:
               name: default-port
           image: mchekini/back:{{ .Values.imageVersion }}
           imagePullPolicy: IfNotPresent
-          command:
-            - java
-            - -jar
-            - /opt/high-way-to-devops.jar
+          args:
             - --spring.config.location=file:///configuration/application.properties
           volumeMounts:
             - mountPath: /configuration
