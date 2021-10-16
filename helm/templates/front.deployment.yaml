@@ -3,6 +3,10 @@ kind: Deployment
 metadata:
   name: front-deploy
 spec:
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
   replicas: 1
   selector:
     matchLabels:

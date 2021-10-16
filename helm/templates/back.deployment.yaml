@@ -3,7 +3,11 @@ kind: Deployment
 metadata:
   name: back-deploy
 spec:
-  replicas: 3
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+  replicas: 4
   selector:
     matchLabels:
       application: back
