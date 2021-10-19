@@ -1,0 +1,13 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: taux-updater
+spec:
+  completions: 1
+  template:
+    spec:
+      containers:
+        - name: curl-container
+          image: curlimages/curl
+          command: ["sleep", "60", "&", "curl", "back-svc:80/api/update-taux"]
+      restartPolicy: Never

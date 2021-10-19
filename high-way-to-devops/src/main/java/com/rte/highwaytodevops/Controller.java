@@ -74,6 +74,14 @@ public class Controller {
     }
 
 
+    @GetMapping("api/update-taux")
+    public void updateTaux(){
+        Personne personne = personneRepository.getById(1L);
+        personne.setTjm(personne.getTjm() + 10);
+        personneRepository.save(personne);
+    }
+
+
     @GetMapping("api/personnes")
     public List<Personne> getPersonnes() {
 
