@@ -3,7 +3,7 @@ kind: Job
 metadata:
   name: taux-updater
 spec:
-  completions: 1
+  completions: 3
   template:
     spec:
       containers:
