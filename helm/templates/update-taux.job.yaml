@@ -9,5 +9,5 @@ spec:
       containers:
         - name: curl-container
           image: curlimages/curl
-          command: ["sleep", "60", "&", "curl", "back-svc:80/api/update-taux"]
+          command: ["curl", "back-svc:80/api/update-taux"]
       restartPolicy: Never
